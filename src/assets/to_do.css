@@ -102,5 +102,105 @@ h1{
     font-weight: bold;
     color: #d8b7eb;
 }
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #222;
+    color: white;
+}
+.navbar-logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 30px;
+    color: white;
+}
+.nav-link{
+    margin-right: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.logout-btn{
+    padding: 8px 20px;
+    border-radius: 8px;
+    background-color: rgb(226, 12, 12);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+form{
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #bbb6b6;
+    border-radius: 8px;
+    padding: 24px;
+}
+.auth-description{
+    margin-bottom: 25px;
+    color: #858383;
+    text-align: center;
+}
+.auth-description {
+    margin-bottom: 25px;
+    color: #858383;
+}
+.auth-card .form-group {
+    margin-bottom: 18px;
+}
+.auth-card label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+.auth-card input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.auth-button {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #222;
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+.auth-button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+.auth-message {
+    padding: 10px;
+    margin-bottom: 15px;
+
+    border-radius: 5px;
+}
+.auth-message.error {
+    background: #ffe5e5;
+    color: #b00000;
+}
+.auth-message.success {
+    background: #e5f7e9;
+    color: #167333;
+}
+.auth-link-text,.register-prompt {
+    margin-top: 20px;
+    text-align: center;
+}
+.register-prompt a,.auth-link-text a {
+    color: #222;
+    font-weight: bold;
+}
 
 
