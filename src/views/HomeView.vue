@@ -51,7 +51,7 @@
 <script>
 import TaskItem from "../components/TaskItem.vue";
 import ProgressBar from "../components/ProgressBar.vue"
-import {filterAndSortTasks} from "../utils/task";
+import {filterAndSortTasks, getTasks, saveTasks} from "../utils/task";
 
 export default{
     components:{
@@ -60,16 +60,15 @@ export default{
     },
     data(){
       return{
-        tasks:[
-            {id:1, title:"Learn Vue basics", completed: true, priority: "High"},
-            {id:2, title:"Practice Vue directives", completed: false, priority: "Medium"},
-            {id:3, title:"Create To Do App", completed: false, priority: "Low"}
-        ],
+        tasks: [],
         newTask: "",
         newPriority: "Medium",
         priorityFilter: "All",
         statusFilter: "All"
       }
+    },
+    created(){
+        this.tasks = getTasks();
     },
     computed:{
         filteredTasks(){
@@ -99,6 +98,7 @@ export default{
                 completed: false,
                 priority: this.newPriority
             });
+            saveTasks(this.tasks);
             this.newTask = "";
             this.newPriority = "Medium";
         },
@@ -106,10 +106,12 @@ export default{
             const task = this.tasks.find(t => t.id === id);
             if(task){
                 task.completed = true;
+                saveTasks(this.tasks);
             }
         },
         deleteTask(id){
             this.tasks = this.tasks.filter(task => task.id !== id);
+            saveTasks(this.tasks);
         }
     }
 }

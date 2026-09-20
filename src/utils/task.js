@@ -1,3 +1,36 @@
+import { getCurrentUser } from "../services/auth";
+
+const TASKS_KEY_PREFIX = "todo_tasks_";
+const DEFAULT_TASKS = [
+    {id: 1, title: "Learn Vue basics", completed: true, priority: "High"},
+    {id: 2, title: "Practice Vue directives", completed: false, priority: "Medium"},
+    {id: 3, title: "Create To Do App", completed: false, priority: "Low"}
+];
+
+function getTasksKey() {
+    const currentUser = getCurrentUser();
+    return currentUser ? `${TASKS_KEY_PREFIX}${currentUser.id}` : null;
+}
+
+export function getTasks() {
+    const tasksKey = getTasksKey();
+    if (!tasksKey) return [];
+
+    const storedTasks = localStorage.getItem(tasksKey);
+    if (storedTasks) return JSON.parse(storedTasks);
+
+    const defaultTasks = DEFAULT_TASKS.map(task => ({...task}));
+    saveTasks(defaultTasks);
+    return defaultTasks;
+}
+
+export function saveTasks(tasks) {
+    const tasksKey = getTasksKey();
+    if (tasksKey) {
+        localStorage.setItem(tasksKey, JSON.stringify(tasks));
+    }
+}
+
 export function filterAndSortTasks(tasks, priorityFilter, statusFilter){
     let filtered = tasks.filter(task => {
         const priorityMatch = 
